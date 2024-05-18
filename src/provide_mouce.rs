@@ -2,8 +2,8 @@ use bevy::prelude::*;
 use crossbeam_channel::{unbounded, Receiver, Sender};
 use mouce::{common::MouseEvent, Mouse};
 use std::thread;
-
-pub(crate) struct MousePosProvider;
+/// Provides mouse functionality for the Bevy application.
+pub struct MousePosProvider;
 
 /// Enum of mouse buttons
 pub type GlobalMouseButton = mouce::common::MouseButton;

@@ -1,8 +1,7 @@
 #![doc = include_str!("../README.md")]
 #![warn(missing_docs)]
 
-use bevy::app::PluginGroupBuilder;
-use bevy::prelude::*;
+use bevy::{app::PluginGroupBuilder, prelude::*};
 
 /// Module providing the keyboard events and hotkey handler.
 pub mod provide_mki;
@@ -23,8 +22,5 @@ impl PluginGroup for GlobalInputPlugins {
         group
             .add(provide_mki::KeyboardProvider)
             .add(provide_mouce::MousePosProvider)
-            .add(bevy::window::WindowPlugin {
-				..Default::default()
-			})
     }
 }

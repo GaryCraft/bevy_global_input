@@ -21,17 +21,18 @@ pub struct GlobalKeyEvents(pub GlobalKeys);
 #[derive(Resource, Deref)]
 struct StreamReceiver(Receiver<GlobalKeys>);
 
-pub(crate) struct KeyboardProvider;
+/// Provides keyboard functionality for the Bevy application.
+pub struct KeyboardProvider;
 
 impl Plugin for KeyboardProvider {
-    fn build(&self, app: &mut App) {
-        app.add_event::<GlobalKeyEvents>()
-            .init_resource::<GlobalHotkeys>()
-            .add_event::<GlobalHotkeyEvents>()
-            .add_systems(Startup, send_events)
-            .add_systems(Update, read_stream_events)
-            .add_systems(Update, read_stream_hotkeys);
-    }
+	fn build(&self, app: &mut App) {
+		app.add_event::<GlobalKeyEvents>()
+			.init_resource::<GlobalHotkeys>()
+			.add_event::<GlobalHotkeyEvents>()
+			.add_systems(Startup, send_events)
+			.add_systems(Update, read_stream_events)
+			.add_systems(Update, read_stream_hotkeys);
+	}
 }
 
 /// Resource which stores global hotkeys
