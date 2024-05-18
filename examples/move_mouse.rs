@@ -30,7 +30,7 @@ fn system(
     mut moves: EventWriter<MouseControl>,
     time: Res<Time>,
 ) {
-    for e in hotkey.iter() {
+    for e in hotkey.read() {
         if e.0 == "ToggleMovement" {
             *moving = !*moving;
         }

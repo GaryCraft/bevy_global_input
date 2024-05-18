@@ -22,7 +22,7 @@ fn setup(mut hotkeys: ResMut<GlobalHotkeys>) {
 }
 
 fn system(mut ev: EventReader<GlobalHotkeyEvents>) {
-    for e in ev.iter() {
+    for e in ev.read() {
         if e.0 == "PrintSomething" {
             println!("PrintSomething hotkey event received");
         }

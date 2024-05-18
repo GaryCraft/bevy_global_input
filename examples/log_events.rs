@@ -14,19 +14,19 @@ fn main() {
 }
 
 fn key_events(mut ev: EventReader<GlobalKeyEvents>) {
-    for e in ev.iter() {
+    for e in ev.read() {
         dbg!(e);
     }
 }
 
 fn mouse_button_events(mut ev: EventReader<GlobalMouseButtonEvents>) {
-    for e in ev.iter() {
+    for e in ev.read() {
         dbg!(e);
     }
 }
 
 fn scroll_events(mut ev: EventReader<GlobalScrollEvents>) {
-    for e in ev.iter() {
+    for e in ev.read() {
         dbg!(e);
     }
 }
