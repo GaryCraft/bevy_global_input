@@ -23,5 +23,8 @@ impl PluginGroup for GlobalInputPlugins {
         group
             .add(provide_mki::KeyboardProvider)
             .add(provide_mouce::MousePosProvider)
+            .add(bevy::window::WindowPlugin {
+				..Default::default()
+			})
     }
 }
