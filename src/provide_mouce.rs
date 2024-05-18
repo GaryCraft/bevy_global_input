@@ -79,21 +79,22 @@ fn split_events(
     mut scrolls: EventWriter<GlobalScrollEvents>,
     mut clicks: EventWriter<GlobalMouseButtonEvents>,
 ) {
-    for event in events.iter() {
-        match event {
+    for event in events.read() {
+        let snd = match event {
             GlobalMouseEvents(e) => match e {
                 MouseEvent::Scroll(scroll) => scrolls.send(GlobalScrollEvents(*scroll)),
                 MouseEvent::Press(click) => clicks.send(GlobalMouseButtonEvents(*click)),
                 _ => {}
             },
-        }
+        };
+		return snd;
     }
 }
 
 fn store_last_pos(mut events: EventReader<GlobalMouseEvents>, mut mouse: ResMut<GlobalMousePos>) {
     // Try to use AbsoluteMove events
     let abs_move = events
-        .iter()
+        .read()
         .filter_map(|e| match e.0 {
             MouseEvent::AbsoluteMove(x, y) => Some((x, y)),
             _ => None,
@@ -183,7 +184,7 @@ fn setup_mover(mut commands: Commands) {
 struct ControlEventSender(Sender<MouseControl>);
 
 fn mover_events(mut ev: EventReader<MouseControl>, tx: ResMut<ControlEventSender>) {
-    for event in ev.iter() {
+    for event in ev.read() {
         tx.send(*event).ok();
     }
 }
