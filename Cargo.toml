@@ -15,7 +15,7 @@ repository = "https://github.com/laundmo/bevy_global_input"
 documentation = "https://docs.rs/bevy_global_input"
 keywords = ["bevy", "input", "mouse", "keyboard"]
 categories = []
-edition = "2024"
+edition = "2021"
 
 [features]
 default = []

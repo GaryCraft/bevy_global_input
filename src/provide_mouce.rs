@@ -80,14 +80,15 @@ fn split_events(
     mut clicks: EventWriter<GlobalMouseButtonEvents>,
 ) {
     for event in events.read() {
-        let snd = match event {
-            GlobalMouseEvents(e) => match e {
-                MouseEvent::Scroll(scroll) => scrolls.send(GlobalScrollEvents(*scroll)),
-                MouseEvent::Press(click) => clicks.send(GlobalMouseButtonEvents(*click)),
-                _ => {}
-            },
-        };
-		return snd;
+        match event.0 {
+			MouseEvent::Scroll(direction) => {
+				scrolls.send(GlobalScrollEvents(direction));
+			}
+			MouseEvent::Press(button) => {
+				clicks.send(GlobalMouseButtonEvents(button));
+			}
+			_ => {}
+		}
     }
 }
 
